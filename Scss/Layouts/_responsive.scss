@@ -1,0 +1,179 @@
+/* Carte Photographe --------------------------------------------- */
+
+@media screen and (max-width:1400px) {
+    .flex {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        gap: 1rem 0rem;
+        grid-template-rows: repeat(2, 1fr);
+        padding-left: 12rem;
+    
+    }
+    
+    .logo {
+        grid-column: 1;
+        grid-row: 1;
+        margin: auto;
+    }
+    
+    .nosphotographe {
+        color: #911c1c;
+        font-size: 20px;
+        font-weight: 500;
+        grid-column: 2;
+        margin: auto;
+    }
+    
+    .contenantchoix {
+        grid-column: span 2;
+        grid-row: 2;
+        margin: auto;
+    }
+    
+    .choix {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem 0.3rem;
+        justify-content: center;
+        
+    }
+}
+
+/*---------------------------------------------------------------- */
+
+
+/* Carte Photographe --------------------------------------------- */
+
+@media screen and (min-width:880px) and (max-width:1280px)   {
+    .carte {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: repeat(2, 1fr);
+        width: 85%;
+        padding-left: 4rem;
+        padding-right: 1rem;
+        padding-top: 5rem;
+    }
+
+    .photographegallery {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: repeat(2, 1fr);
+        margin-top: 3rem; 
+
+        &__photop {
+            border-radius: 0.5rem;
+        }
+    }
+}
+
+@media screen and (max-width:879px) {
+    .carte {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: repeat(1, 1fr);
+        width: 85%;
+    }
+
+    .photographegallery {
+        display: grid;
+        gap: 2rem;
+        grid-template-columns: repeat(1, 1fr);
+        margin-top: 3rem; 
+
+        &__photop {
+            border-radius: 0.5rem;
+        }
+    }
+}
+
+/*---------------------------------------------------------------- */
+
+
+/* block info photographe --------------------------------------------- */
+
+@media screen and (max-width:980px) {
+
+
+    .photographepage {
+        background-color: #fafafa;
+        border-radius: 5px;
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        padding: 3rem 5rem;
+        margin-left: -5rem;
+
+        &__title {
+            font-size: 45px;
+            line-height: 4rem;
+            margin: 0rem;
+            color: #d3573c;
+        }
+    
+        &__localisation {
+            font-size: 18px;
+            font-weight: bold;
+            margin: 1rem 0.2rem;
+            color: #901C1C;
+        }
+
+        &__tagline {
+            height: 23px;
+            width: 348px;
+            font-size: 13px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: 23px;
+            letter-spacing: 0em;
+            text-align: left;
+        }
+    
+        &__photo {
+            border-radius: 50%;
+            height: 150px;
+            object-fit: cover;
+            text-decoration: none;
+            width: 150px;
+            margin-left: 70%;
+        }
+    
+        &__button {
+            background-color: #911c1c;
+            border-radius: 5px;
+            border: none;
+            bottom: 1rem;
+            color: white;
+            cursor: pointer;
+            font-size: 23.44px;
+            height: 80px;
+            left: 50%;
+            margin-left: -150px;
+            position: fixed;
+            width: 300px;
+        }
+    }
+}
+
+@media screen and (max-width:720px) {
+    .photographepage__photo {
+        border-radius: 50%;
+        height: 150px;
+        object-fit: cover;
+        text-decoration: none;
+        width: 150px;
+        margin-left: 5%;
+    }
+}
+
+@media screen and (max-width:650px) {
+    .photographepage__photo {
+        border-radius: 25%;
+        height: 150px;
+        object-fit: cover;
+        text-decoration: none;
+        width: 130px;
+        margin-left: -20%;
+    }
+}
+
+/*---------------------------------------------------------------- */

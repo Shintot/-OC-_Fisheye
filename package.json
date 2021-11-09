@@ -1,0 +1,26 @@
+{
+  "name": "mathissanchez_6_11102021",
+  "version": "1.0.0",
+  "description": "Projet 6 - Fisheye",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch Scss/style.scss:css/style.css",
+    "start": "parcel ./index.html --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shintot/Mathissanchez_6_11102021.git"
+  },
+  "author": "sanchez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shintot/Mathissanchez_6_11102021/issues"
+  },
+  "homepage": "https://github.com/Shintot/Mathissanchez_6_11102021#readme",
+  "dependencies": {
+    "sass": "^1.42.1"
+  },
+  "devDependencies": {
+    "parcel-bundler": "^1.12.5"
+  }
+}

@@ -1,0 +1,208 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans&display=swap");
+a {
+  text-decoration: none;
+  color: #901C1C;
+}
+
+li {
+  list-style-type: none;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 2rem 1rem 0 5rem;
+}
+
+.logo {
+  width: 200px;
+  height: 50px;
+  padding: 1rem 1rem 1rem 1rem;
+}
+
+.largeur {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.choix {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 1.5rem;
+  padding-top: 0.5rem;
+  width: 40%;
+  padding-left: 18rem;
+}
+
+.choix__lien {
+  font-family: DM Sans;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: center;
+  padding: 2px 6px 2px 6px;
+  border: 0.5px solid #C4C4C4;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border-radius: 11px;
+}
+
+.nosphotographe {
+  font-family: DM Sans;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 47px;
+  color: #901C1C;
+  margin: 10px 5rem;
+}
+
+.flex-carte {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 75%;
+  padding-left: 12rem;
+  padding-top: 5rem;
+}
+
+.photographe-section {
+  height: 1050px;
+}
+
+.photographe {
+  margin: 2rem 0rem 2rem 0rem;
+  text-align: center;
+}
+
+.photographe__img {
+  border-radius: 50%;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  text-decoration: none;
+  width: 200px;
+}
+
+.photographe__nom {
+  color: #d3573c;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 46.87px;
+  margin: 10px 0px 0px 0px;
+  text-decoration: none !important;
+}
+
+.photographe__localisation {
+  color: #911c1c;
+  font-size: 13px;
+  line-height: 16.93px;
+}
+
+.photographe__taff {
+  font-size: 10px;
+  line-height: 13.02px;
+  margin: 5px 0px;
+}
+
+.photographe__prix {
+  color: #757575;
+  font-size: 11.72px;
+  margin: 0px 0px 10px 0px;
+}
+
+.photographe__filtre {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.2rem;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1600px) {
+  .nosphotographe {
+    font-family: DM Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 47px;
+    color: #901C1C;
+    margin: 10px 5rem 0 2rem;
+  }
+  .choix {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    height: 1.5rem;
+    padding-top: 0.5rem;
+    width: 40%;
+    margin-left: -15rem;
+  }
+}
+
+@media screen and (min-width: 1060px) and (max-width: 1199px) {
+  .nosphotographe {
+    font-family: DM Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 47px;
+    color: #901C1C;
+    margin: 80px 5rem 0 2rem;
+    width: 50%;
+    padding-right: 15rem;
+  }
+  .choix {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    height: 1.5rem;
+    padding-top: 0.5rem;
+    width: 40%;
+    margin-left: -15rem;
+  }
+}
+
+@media screen and (min-width: 700px) and (max-width: 1059px) {
+  .nosphotographe {
+    font-family: DM Sans;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 47px;
+    color: #901C1C;
+    margin: 80px 5rem 0 2rem;
+    width: 50%;
+    padding-right: 35rem;
+  }
+  .largeur {
+    width: 100%;
+  }
+  .flex {
+    padding: 2rem 1rem 0 5rem;
+  }
+}
+/*# sourceMappingURL=style.css.map */
