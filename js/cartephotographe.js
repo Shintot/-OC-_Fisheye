@@ -1,13 +1,14 @@
-// json photographe
-    import json from "./photographe.json"
-
-// liens json et js
-const photographes = json.photographers;
-console.log(photographes);
 
 //dom
 const photographelist = document.querySelector ("#hierarchie");
 
+// lire le json 
+fetch("../database/photographe.json")
+  .then((response) => response.json())
+  .then((data) => {
+
+    
+const photographes = data.photographers;
 
 for (let photographe of photographes) {
 
@@ -84,7 +85,10 @@ photographelist.appendChild(carte);
     cadrecarte.appendChild(slogan);
     cadrecarte.appendChild(prix);
     cadrecarte.appendChild(tags);
-}
+    
+}}) .catch((err) => {
+    console.log(err);})
+
 
 
 
