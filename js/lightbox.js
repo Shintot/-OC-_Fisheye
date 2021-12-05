@@ -1,7 +1,7 @@
 const lightbox = document.querySelector ("#lightbox")
-const lightboxopen = document.querySelector("#img1");
+const lightboxopen = document.querySelector(".photographegallery__card");
 const close = document.querySelector("#close1")
-const links = document.querySelectorAll(".photographegallery a")
+const links = document.querySelectorAll(".photographegallery div a")
 console.log(links)
 
 // lancement modal
