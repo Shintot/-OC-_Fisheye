@@ -108,7 +108,7 @@ select {
 
 .photographegallery {
     display: grid;
-    gap: 2rem;
+    gap: 4rem;
     grid-template-columns: repeat(3, 1fr);
     margin-top: 3rem;
 
@@ -139,7 +139,7 @@ select {
     }
 
     &__section-button {
-        background: none;
+        background-color: yellow;
     border: none;
     color: #911c1c;
     font-size: 1.6rem;

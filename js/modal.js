@@ -1,6 +1,6 @@
 
 const modal = document.querySelector("#modal");
-const modalBtn = document.querySelector("#photographebutton");
+const modalBtn = document.querySelector(".photographepage__button");
 const closeModalBtn = document.querySelector("#close")
 
 

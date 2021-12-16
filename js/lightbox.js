@@ -1,8 +1,9 @@
+
 const lightbox = document.querySelector ("#lightbox")
-const lightboxopen = document.querySelector(".photographegallery__card");
+const lightboxopen = document.querySelector(".photographegallery__photop");
 const close = document.querySelector("#close1")
-const links = document.querySelectorAll(".photographegallery div a")
-console.log(links)
+const links = document.querySelectorAll(" .photographegallery a");
+console.log(links);
 
 // lancement modal
 
@@ -14,7 +15,7 @@ for(let link of links){
         e.preventDefault();
         //ajout image par click
         const image = lightbox.querySelector(".lightbox__contenant img");
-        image.src= this.href;
+        image.src = `${medias.image}`;
         //affiche lightbox
         lightbox.classList.add("show")
     })
