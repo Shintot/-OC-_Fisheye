@@ -1,5 +1,6 @@
 const id = new URLSearchParams(document.location.search).get("id");
 console.log("ID : " + id);
+
 //dom
 const gallery = document.querySelector ("#gallery");
 const hautdepage = document.querySelector ("#hautdepage");
@@ -19,10 +20,8 @@ fetch("../database/photographe.json")
         break;
       }
     }
-    console.log("photog : ", photographe);
 
     //header dynamique
-
     //contenant photographe ----------------------------¤
     const heade = document.createElement("div");
     heade.classList.add("photographepage");
@@ -49,7 +48,7 @@ fetch("../database/photographe.json")
     //taglist du photographe ----------------------------¤
     const taglist = document.createElement("ul");
     taglist.classList.add("photographepage__taglist");
-    
+
     // tags du photographe
     const taglist1 = document.createElement("li");
     taglist1.classList.add("photographepage__tags");
@@ -58,14 +57,16 @@ fetch("../database/photographe.json")
     //btn contact
     const button = document.createElement("button");
     button.classList.add("photographepage__button");
-    button.Text = contact;
+    button.innerHTML = "Contactez-moi";
+      // lancement modal contact
+      button.addEventListener("click", launchModal);
 
     //portrait du photographe ----------------------------¤
     const portrait = document.createElement("img");
     portrait.classList.add("photographepage__photo");
     portrait.src = `${photographe.portrait}`;
 
-    // tout dans heade
+    // tout dans heade ------------------------¤
     heade.appendChild(contenant);
     heade.appendChild(nomph);
     heade.appendChild(localisation);
@@ -74,24 +75,17 @@ fetch("../database/photographe.json")
     heade.appendChild(taglist1);
     heade.appendChild(button);
     heade.appendChild(portrait);
-    
-
-    //tout dans contenant
+    //tout dans contenant --------------------¤
     contenant.appendChild(nomph);
     contenant.appendChild(localisation);
     contenant.appendChild(phrase);
     contenant.appendChild(taglist);
     contenant.appendChild(taglist1);
-
-    taglist.appendChild(taglist1)
-
-    //head dans dom
+    taglist.appendChild(taglist1);
+    //head dans dom -------------------------¤
     hautdepage.appendChild(heade);
 
     // lien id -> photograperid
-
-    //const id = new URLSearchParams(document.location.search).get("id");
-    //console.log("ID : " + id);
     const mimi = [];
 
     // boucle lien (id -> photograperid)
@@ -100,12 +94,12 @@ fetch("../database/photographe.json")
         mimi.push(photo);
       }
     }
-
     // page dynamique
     for (let medias of mimi) {
       // contenant des photographe ----------------------------¤
       const carte = document.createElement("div");
       carte.classList.add("photographegallery__card");
+      
 
       //lien lightbox image -----------------------------------¤
       const imagepourlightbox = document.createElement("a");
@@ -118,8 +112,7 @@ fetch("../database/photographe.json")
       images.src = `${medias.image}`;
       images.classList.add("photographegallery__photop");
 
-
-      const videos = document.createElement("video")
+      const videos = document.createElement("video");
       videos.src = `${medias.video}`;
       videos.classList.add("photographegallery__photop");
 
@@ -145,23 +138,13 @@ fetch("../database/photographe.json")
       //btn like -----------------------------------------¤
       const btn = document.createElement("button");
       btn.classList.add("photographegallery__section-button");
-
+      //-----------------------------------------------¤
       //coeur -----------------------------------------¤
       const coeur = document.createElement("i");
-
-      //image dans <a> (lien lightbox)
-      imagepourlightbox.appendChild(images);
-      imagepourlightbox.appendChild(footer);
-      imagepourlightbox.appendChild(titre);
-      imagepourlightbox.appendChild(like);
-      imagepourlightbox.appendChild(btn);
-      imagepourlightbox.appendChild(coeur);
-      imagepourlightbox.appendChild(nombre);
-      imagepourlightbox.appendChild(carte);
-      
-      
-
+      coeur.classList.add("far", "fa-heart", "coeur");
+      //-------------------------------------¤
       //tout dans carte
+      carte.appendChild(imagepourlightbox);
       carte.appendChild(images);
       carte.appendChild(footer);
       carte.appendChild(titre);
@@ -169,21 +152,28 @@ fetch("../database/photographe.json")
       carte.appendChild(btn);
       carte.appendChild(coeur);
       carte.appendChild(nombre);
-      
+      //--------------------------------------¤
       //btn et nombre dans like
+      btn.appendChild(coeur);
       like.appendChild(btn);
       like.appendChild(nombre);
-      btn.appendChild(coeur);
-
+      //--------------------------------------¤
       // like et titre dans footer
       footer.appendChild(titre);
       footer.appendChild(like);
       footer.appendChild(coeur);
-
+      //--------------------------------------¤
+      imagepourlightbox.appendChild(images);
       //photo dans gallery (DOM)
-      gallery.appendChild(imagepourlightbox);
+      gallery.appendChild(carte);
     }
+
+
+    
+
   }).catch((err) => {
   console.log(err);})
+
+  
 
   

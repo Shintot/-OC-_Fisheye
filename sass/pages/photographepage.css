@@ -136,6 +136,10 @@ select {
   width: 100%;
 }
 
+.photographegallery__photop1 {
+  height: 18.5rem;
+}
+
 .photographegallery__footer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -147,6 +151,7 @@ select {
 
 .photographegallery__figcaption {
   margin-top: 1rem;
+  margin-left: 0.5rem;
 }
 
 .photographegallery__like {
@@ -160,7 +165,7 @@ select {
 }
 
 .photographegallery__section-button {
-  background-color: yellow;
+  background: none;
   border: none;
   color: #911c1c;
   font-size: 1.6rem;
@@ -171,6 +176,15 @@ select {
   -o-object-fit: cover;
      object-fit: cover;
   width: 100%;
+}
+
+.photographegallery__chiffre {
+  margin-left: 7rem;
+}
+
+.coeur {
+  margin-top: 1.2rem;
+  margin-right: 1rem;
 }
 
 .contactmodal {

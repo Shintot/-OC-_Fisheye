@@ -124,6 +124,11 @@ select {
         width: 100%;
     }
 
+     &__photop1 {
+        height: 18.5rem;
+        
+    }
+
     &__footer {
         display: flex;
         justify-content: space-between;
@@ -131,6 +136,7 @@ select {
 
     &__figcaption {
         margin-top: 1rem;
+        margin-left: 0.5rem;
     }
 
     &__like {
@@ -139,7 +145,7 @@ select {
     }
 
     &__section-button {
-        background-color: yellow;
+        background: none;
     border: none;
     color: #911c1c;
     font-size: 1.6rem;
@@ -151,6 +157,15 @@ select {
     width: 100%;
     }
 
+    &__chiffre {
+        margin-left: 7rem;
+    }
+
+}
+
+.coeur {
+    margin-top: 1.2rem;
+    margin-right: 1rem;
 }
 
 

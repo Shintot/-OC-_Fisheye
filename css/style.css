@@ -124,12 +124,16 @@ select {
   object-fit: cover;
   width: 100%;
 }
+.photographegallery__photop1 {
+  height: 18.5rem;
+}
 .photographegallery__footer {
   display: flex;
   justify-content: space-between;
 }
 .photographegallery__figcaption {
   margin-top: 1rem;
+  margin-left: 0.5rem;
 }
 .photographegallery__like {
   display: flex;
@@ -145,6 +149,14 @@ select {
   height: 320px;
   object-fit: cover;
   width: 100%;
+}
+.photographegallery__chiffre {
+  margin-left: 7rem;
+}
+
+.coeur {
+  margin-top: 1.2rem;
+  margin-right: 1rem;
 }
 
 .contactmodal {
