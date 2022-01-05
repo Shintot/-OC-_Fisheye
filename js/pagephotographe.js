@@ -9,6 +9,7 @@ const hautdepage = document.querySelector ("#hautdepage");
 fetch("../database/photographe.json")
   .then((response) => response.json())
   .then((data) =>{
+    
     //le json
     const media = data.media;
     const photographes = data.photographers;
@@ -21,7 +22,7 @@ fetch("../database/photographe.json")
       }
     }
 
-    //header dynamique
+  //HEADER DYNAMIQUE 
     //contenant photographe ----------------------------¤
     const heade = document.createElement("div");
     heade.classList.add("photographepage");
@@ -49,17 +50,27 @@ fetch("../database/photographe.json")
     const taglist = document.createElement("ul");
     taglist.classList.add("photographepage__taglist");
 
-    // tags du photographe
+    // tags du photographe 1
     const taglist1 = document.createElement("li");
     taglist1.classList.add("photographepage__tags");
-    taglist1.innerText = photographe.tags;
+    taglist1.innerText = photographe.tags[0];
+
+    // tags du photographe 2
+    const taglist2 = document.createElement("li");
+    taglist2.classList.add("photographepage__tags");
+    taglist2.innerText = photographe.tags[1];
+
+    // tags du photographe 3
+    const taglist3 = document.createElement("li");
+    taglist3.classList.add("photographepage__tags");
+    taglist3.innerText = photographe.tags[2];
 
     //btn contact
     const button = document.createElement("button");
     button.classList.add("photographepage__button");
     button.innerHTML = "Contactez-moi";
-      // lancement modal contact
-      button.addEventListener("click", launchModal);
+    // lancement modal contact
+    button.addEventListener("click", launchModal);
 
     //portrait du photographe ----------------------------¤
     const portrait = document.createElement("img");
@@ -73,6 +84,8 @@ fetch("../database/photographe.json")
     heade.appendChild(phrase);
     heade.appendChild(taglist);
     heade.appendChild(taglist1);
+    heade.appendChild(taglist2);
+    heade.appendChild(taglist3);
     heade.appendChild(button);
     heade.appendChild(portrait);
     //tout dans contenant --------------------¤
@@ -81,6 +94,9 @@ fetch("../database/photographe.json")
     contenant.appendChild(phrase);
     contenant.appendChild(taglist);
     contenant.appendChild(taglist1);
+    
+    taglist.appendChild(taglist2);
+    taglist.appendChild(taglist3);
     taglist.appendChild(taglist1);
     //head dans dom -------------------------¤
     hautdepage.appendChild(heade);
@@ -98,8 +114,8 @@ fetch("../database/photographe.json")
     for (let medias of mimi) {
       // contenant des photographe ----------------------------¤
       const carte = document.createElement("div");
+     
       carte.classList.add("photographegallery__card");
-      
 
       //lien lightbox image -----------------------------------¤
       const imagepourlightbox = document.createElement("a");
@@ -111,7 +127,39 @@ fetch("../database/photographe.json")
       const images = document.createElement("img");
       images.src = `${medias.image}`;
       images.classList.add("photographegallery__photop");
+      
+      //lightbox
+       const lightbox = document.querySelector("#lightbox");
+       const lightboxopen = document.querySelector(".photographegallery__photop");
+       const close = document.querySelector("#close1");
+       const links = document.querySelectorAll(".photographegallery img");
+      
+       //boucle pour lightbox
+       for (let link of links) {
+        //evenement du clic
+         link.addEventListener("click", function (e) {
+           
+           //desactivation liens
+           e.preventDefault();
+           //ajout image par click
+           const imageL = lightbox.querySelector(".lightbox__contenant img");
+           imageL.src = this.src;
+           console.log(link)
+           //affiche lightbox
+           lightbox.classList.add("show");
+         });
 
+         // ferme lightbox
+         close.addEventListener("click", function () {
+           lightbox.classList.remove("show");
+         });
+
+         // ferme lightbox clic exterieur
+         lightbox.addEventListener("click", function () {
+           lightbox.classList.remove("show");
+         });
+       }
+        
       const videos = document.createElement("video");
       videos.src = `${medias.video}`;
       videos.classList.add("photographegallery__photop");
@@ -133,44 +181,79 @@ fetch("../database/photographe.json")
       const nombre = document.createElement("p");
       nombre.classList.add("photographegallery__chiffre");
       nombre.innerText = medias.likes;
-      console.log(like);
+      
 
       //btn like -----------------------------------------¤
-      const btn = document.createElement("button");
+      const btn = document.createElement("div");
       btn.classList.add("photographegallery__section-button");
-      //-----------------------------------------------¤
+
       //coeur -----------------------------------------¤
       const coeur = document.createElement("i");
       coeur.classList.add("far", "fa-heart", "coeur");
-      //-------------------------------------¤
+      
+      //coeur plein 
+      //const coeurplein = document.createElement("i")
+      //coeurplein.classList.add("fas", "fa-heart","coeurplein")
       //tout dans carte
-      carte.appendChild(imagepourlightbox);
+      
       carte.appendChild(images);
       carte.appendChild(footer);
       carte.appendChild(titre);
-      carte.appendChild(like);
       carte.appendChild(btn);
+      carte.appendChild(like);
       carte.appendChild(coeur);
+     // carte.appendChild(coeurplein);
       carte.appendChild(nombre);
-      //--------------------------------------¤
+
       //btn et nombre dans like
       btn.appendChild(coeur);
-      like.appendChild(btn);
+      //btn.appendChild(coeurplein)
       like.appendChild(nombre);
-      //--------------------------------------¤
+      
       // like et titre dans footer
       footer.appendChild(titre);
       footer.appendChild(like);
-      footer.appendChild(coeur);
+      footer.appendChild(btn);
+      
       //--------------------------------------¤
-      imagepourlightbox.appendChild(images);
+      
       //photo dans gallery (DOM)
       gallery.appendChild(carte);
     }
 
+    const dropdowntitres = document.querySelector("#dropdownMenu");
+    dropdowntitres.addEventListener("change", function (e) {
+      console.log(e.target.value);
+      if (e.target.value === "title") {
+         media.sort(function (a, b) {
+           if (a.name > b.name) {
+             return 1;
+           }
+           if (a.name < b.name) {
+             return -1;
+           }
+           return 0;
+         });
+      } else if (e.target.value === "popularity") {
+      } else if (e.target.value === "date") {
+      } else {
+      }
+     
+    });
 
-    
+    // function trie(){
+    //media.sort(function (a, b) {
+    // if (a.name > b.name) {
+    //return 1;
+    // }
+    // if (a.name < b.name) {
+    // return -1;
+    //}
+    //return 0;
+    //});
+    //}
 
+    console.log(dropdowntitres);
   }).catch((err) => {
   console.log(err);})
 

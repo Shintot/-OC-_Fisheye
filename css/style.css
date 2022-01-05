@@ -68,17 +68,13 @@ body {
   margin-left: -2.5rem;
 }
 .photographepage__tags {
-  font-family: DM Sans;
-  font-size: 12px;
-  font-style: normal;
-  font-weight: 500;
-  line-height: 16px;
-  letter-spacing: 0em;
-  text-align: center;
-  padding: 2px 6px 2px 6px;
-  border: 0.5px solid #C4C4C4;
-  box-sizing: border-box;
-  border-radius: 11px;
+  border-radius: 12px;
+  border: 1px solid #c4c4c4;
+  color: #911c1c;
+  margin-right: 10px;
+  margin-top: 10px;
+  padding: 0rem 0.5rem;
+  text-decoration: none;
 }
 .photographepage__button {
   background-color: #911c1c;
@@ -120,6 +116,7 @@ select {
   margin-left: -0.5rem;
 }
 .photographegallery__photop {
+  cursor: pointer;
   height: 300px;
   object-fit: cover;
   width: 100%;
@@ -152,11 +149,6 @@ select {
 }
 .photographegallery__chiffre {
   margin-left: 7rem;
-}
-
-.coeur {
-  margin-top: 1.2rem;
-  margin-right: 1rem;
 }
 
 .contactmodal {
@@ -261,8 +253,11 @@ select {
 .lightbox__contenant {
   width: 70%;
   margin: auto;
-  max-width: 700px;
-  padding-right: 20%;
+  max-width: 1000px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   display: flex;
 }
 .lightbox__close {
@@ -274,8 +269,7 @@ select {
   cursor: pointer;
 }
 .lightbox__img {
-  width: 130%;
-  height: 100%;
+  width: 100%;
   margin-top: 35px;
 }
 .lightbox__next {
@@ -292,6 +286,11 @@ select {
 
 .lightbox.show {
   display: initial;
+}
+
+.coeur {
+  cursor: pointer;
+  transition: 1s all ease;
 }
 
 .flex {

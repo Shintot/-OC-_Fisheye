@@ -2,15 +2,13 @@
 const lightbox = document.querySelector ("#lightbox")
 const lightboxopen = document.querySelector(".photographegallery__photop");
 const close = document.querySelector("#close1")
-const links = document.querySelectorAll(" .photographegallery a");
-console.log(links);
-
-// lancement modal
+const links = document.querySelectorAll(".photographegallery div");
 
 
 // ajout click sur les liens
 for(let link of links){
     link.addEventListener("click", function(e){
+        alert("Image clicked")
         //desactivation liens
         e.preventDefault();
         //ajout image par click
