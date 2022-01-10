@@ -130,7 +130,6 @@ fetch("../database/photographe.json")
       
       //lightbox
        const lightbox = document.querySelector("#lightbox");
-       const lightboxopen = document.querySelector(".photographegallery__photop");
        const close = document.querySelector("#close1");
        const links = document.querySelectorAll(".photographegallery img");
       
@@ -138,13 +137,14 @@ fetch("../database/photographe.json")
        for (let link of links) {
         //evenement du clic
          link.addEventListener("click", function (e) {
-           
            //desactivation liens
            e.preventDefault();
            //ajout image par click
            const imageL = lightbox.querySelector(".lightbox__contenant img");
            imageL.src = this.src;
-           console.log(link)
+           const titreL = lightbox.querySelector(".lightbox__titre");
+           titreL.innerText = medias.photoName;
+           console.log(titre)
            //affiche lightbox
            lightbox.classList.add("show");
          });
@@ -190,11 +190,10 @@ fetch("../database/photographe.json")
       //coeur -----------------------------------------¤
       const coeur = document.createElement("i");
       coeur.classList.add("far", "fa-heart", "coeur");
-      
-      //coeur plein 
-      //const coeurplein = document.createElement("i")
-      //coeurplein.classList.add("fas", "fa-heart","coeurplein")
-      //tout dans carte
+      //clic coeur plein
+      coeur.addEventListener("click", function () {
+        if (coeur) {coeur.classList.replace("far","fas");} else {coeur.classList.replace("fas", "far");}
+      });
       
       carte.appendChild(images);
       carte.appendChild(footer);
@@ -252,6 +251,9 @@ fetch("../database/photographe.json")
     //return 0;
     //});
     //}
+
+    
+    
 
     console.log(dropdowntitres);
   }).catch((err) => {
