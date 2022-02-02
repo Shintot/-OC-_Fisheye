@@ -2,7 +2,7 @@
     "photographers": [{
             "name": "Mimi Keel",
             "id": 243,
-            "city": "London",
+            "city": "London, UK",
             "country": "UK",
             "tags": ["portrait", "events", "travel", "animals"],
             "tagline": "Voir le beau dans le quotidien",
@@ -14,7 +14,7 @@
         {
             "name": "Ellie-Rose Wilkens",
             "id": 930,
-            "city": "Paris",
+            "city": "Paris, France",
             "country": "France",
             "tags": ["sport", "architecture"],
             "tagline": "Capturer des compositions complexes",
@@ -26,7 +26,7 @@
         {
             "name": "Tracy Galindo",
             "id": 82,
-            "city": "Montreal",
+            "city": "Montreal, Canada",
             "country": "Canada",
             "tags": ["art", "fashion", "events"],
             "tagline": "Photographe freelance",
@@ -52,7 +52,7 @@
         {
             "name": "Rhode Dubois",
             "id": 925,
-            "city": "Barcelona",
+            "city": "Barcelona, Spain",
             "country": "Spain",
             "tags": ["sport", "fashion", "events", "animals"],
             "tagline": "Je crée des souvenirs",
@@ -65,7 +65,7 @@
         {
             "name": "Marcel Nikolic",
             "id": 195,
-            "city": "Berlin",
+            "city": "Berlin, Germany",
             "country": "Germany",
             "tags": ["travel", "architecture"],
             "tagline": "Toujours à la recherche de LA photo",

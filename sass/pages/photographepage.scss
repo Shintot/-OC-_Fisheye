@@ -340,6 +340,25 @@ select {
     transition: 1s all ease;
   }
 
+  .totallike {
+      align-items: center;
+    background-color: #DB8876;
+    bottom: 0;
+    display: flex;
+    font-size: 24px;
+    height: 69px;
+    justify-content: space-between;
+    padding: 0 2rem;
+    position: fixed;
+    right: 3rem;
+    width: 276px;
+
+    &__contenant {
+    align-items: center;
+    display: flex;
+    }
+  }
+
   
 
   

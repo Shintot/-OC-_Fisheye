@@ -365,4 +365,33 @@ select {
   -webkit-transition: 1s all ease;
   transition: 1s all ease;
 }
+
+.totallike {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  background-color: #DB8876;
+  bottom: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 24px;
+  height: 69px;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding: 0 2rem;
+  position: fixed;
+  right: 3rem;
+  width: 276px;
+}
+
+.totallike__contenant {
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
 /*# sourceMappingURL=photographepage.css.map */

@@ -16,18 +16,20 @@
         
         <main class="menu">
             <label>Trier par</label>
-            <select id="dropdownMenu" class="photographer-page__dropdown-menu focus__element-secondary" aria-label="Order by" tabindex="4">
+            <select id="dropdownMenu"   class="photographer-page__dropdown-menu focus__element-secondary" aria-label="Order by" tabindex="4">
+                <option value="tout">Tout</option>
                 <option value="popularity" class="photographer-page__dropdown-menu-item">Popularité</option>
                 <option value="date" class="photographer-page__dropdown-menu-item">Date</option>
                 <option value="title" class="dropdowntitre">Titre</option>
             </select>
+            <div class="like"></div>
             <div class="photographegallery" id="gallery">
             </div>
             <div class="lightbox" id="lightbox">
                 <span class="lightbox__close" id="close1">&times;</span>
                 <div class="lightbox__contenant">
-                    <a class="lightbox__next"><i class="fas fa-3x fa-arrow-right"></i></a>
-                    <a class="lightbox__back"><i class="fas fa-3x fa-arrow-left"></i></a>
+                    <a class="lightbox__next onclick="ChangeSlide(1)" ><i class="fas fa-3x fa-arrow-right right"></i></a>
+                    <a class="lightbox__back onclick="ChangeSlide(-1)"><i class="fas fa-3x fa-arrow-left"></i></a>
                     <p class="lightbox__titre"></p>
                     <img src="" class="lightbox__img" alt="">
                 </div>
