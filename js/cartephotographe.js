@@ -6,7 +6,7 @@ let photographes = [];
 fetch("../database/photographe.json")
   .then((response) => response.json())
   .then((data) => {
-    //le json
+    //LE JSON
     photographes = data.photographers;
     displayPhotographers(photographes);
   })
