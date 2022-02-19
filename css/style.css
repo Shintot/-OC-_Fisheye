@@ -116,6 +116,7 @@ select {
   margin-left: -0.5rem;
 }
 .photographegallery__photop {
+  display: block;
   cursor: pointer;
   height: 300px;
   object-fit: cover;

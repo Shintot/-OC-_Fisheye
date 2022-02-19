@@ -59,7 +59,6 @@ fetch("../database/photographe.json")
       taglist3.classList.add("photographepage__tags");
       taglist3.innerText = tag;
       taglist.appendChild(taglist3);
-      console.log(tag);
     }
 
     //BTN CONTACT
@@ -189,58 +188,77 @@ fetch("../database/photographe.json")
    for (let medias of mimi) {
      // contenant des photographe ----------------------------¤
      const carte = document.createElement("div");
-     carte.classList.add("photographegallery__card");   
+     carte.classList.add("photographegallery__card");
+
+     const pourlightbox = document.createElement("div");
+     pourlightbox.classList.add("photographegallery__contenantlightbox");
 
      //image photographe -------------------------------------¤
-     var images = document.createElement("img");
+     const images = document.createElement("img");
      images.src = `${medias.image}`;
      images.tabIndex = 5;
      images.classList.add("photographegallery__photop");
-     var videos = document.createElement("video");
-     if (images !== videos ) {
-        videos.src = `${medias.video}`;
-        videos.classList.add("photographegallery__photop");
-     } 
 
-     //LIGHTBOX 
-     const light = document.querySelectorAll(".photographegallery .photographegallery__card");
+     /*const videos = document.createElement("video");
+     videos.tabIndex = 5;
+     const source = document.createElement("source")
+     source.setAttribute("src", `${medias.video}`); 
+     videos.appendChild(source)
+     videos.classList.add("photographegallery__photop");*/
+
+     //LIGHTBOX
+     const light = document.querySelectorAll(
+       ".photographegallery .photographegallery__contenantlightbox"
+     );
      const lightbox = document.querySelector("#lightbox");
      const lightboximg = lightbox.querySelector(".lightbox__img");
      const close = lightbox.querySelector(".lightbox__close");
 
-       for (let i = 0; i < light.length; i++) {
-         let newindex = i;
-         light[i].onclick = () =>{
-          console.log(i);
-          function preview(){ let selectedImgUrl = light[newindex].querySelector("img").src;
-          lightboximg.src = selectedImgUrl;
-          console.log(selectedImgUrl);
-        }
+     for (let i = 0; i < light.length; i++) {
+       let newindex = i;
+       light[i].onclick = () => {
+         console.log(i);
+         function preview() {
+           let selectedImgUrl = light[newindex].querySelector("img").src;
+           lightboximg.src = selectedImgUrl;
+           console.log(selectedImgUrl);
+         }
 
-        //BOUTON 
-        const btnback = document.querySelector(".lightbox__back");
-        const btnnext = document.querySelector(".lightbox__next");
-        btnback.onclick = () =>{
-          newindex--;
-          preview();
-        }
+         //BOUTON
+         const btnback = document.querySelector(".lightbox__back");
+         const btnnext = document.querySelector(".lightbox__next");
+         btnback.onclick = () => {
+           newindex--;
+           if (newindex == 0) {
+             preview();
+             btnback.style.display = "none";
+           } else {
+             preview();
+             btnback.style.display = "block";
+           }
+         };
 
-        btnnext.onclick = () => {
-          newindex++;
-          preview();
-        };
-          
+         btnnext.onclick = () => {
+           newindex++;
+           if (newindex >= light.length - 1) {
+             preview();
+             btnnext.style.display = "none";
+           } else {
+             preview();
+           }
+         };
 
-          preview();
-          lightbox.classList.add("show")
+         preview();
+         lightbox.classList.add("show");
 
-          close.onclick = () => {
-            lightbox.classList.remove("show");
-          }
-         } 
-       }
-   
-     
+         close.onclick = () => {
+           btnback.style.display = "block";
+           btnnext.style.display = "block";
+           lightbox.classList.remove("show");
+         };
+       };
+     }
+
      //footer ---------------- ------------------------------¤
      const footer = document.createElement("footer");
      footer.classList.add("photographegallery__footer");
@@ -265,9 +283,13 @@ fetch("../database/photographe.json")
 
      //coeur -----------------------------------------¤
      const coeur = document.createElement("i");
-     coeur.tabIndex = 5
+     coeur.tabIndex = 5;
      coeur.classList.add("far", "fa-heart", "fa-2x", "coeur");
      coeur.addEventListener("click", function () {
+       const valeur = document.querySelector(".totallike__totaldelike");
+       console.log(valeur);
+       const totalvaleur = parseInt(valeur.innerText) + 1
+       valeur.innerText = totalvaleur;
        coeur2.classList.add("show");
        afficher();
      });
@@ -275,16 +297,18 @@ fetch("../database/photographe.json")
      const coeur2 = document.createElement("i");
      coeur2.tabIndex = 5;
      coeur2.classList.add("fas", "fa-heart", "fa-2x", "coeur2");
-     
+
      coeur2.addEventListener("click", function () {
+       
+       console.log(valeur)
        coeur2.classList.remove("show");
-         valeur++;
-         afficher();
+       valeur++;
+       afficher();
      });
 
      function afficher() {
-       var valeur =0;
-       var message ="<b>" + valeur +(valeur > 1 ? "s" : "") + "</b>";
+       var valeur = 0;
+       var message = "<b>" + valeur + (valeur > 1 ? "s" : "") + "</b>";
        totaldeslikes.innerHTML = message;
      }
 
@@ -299,9 +323,8 @@ fetch("../database/photographe.json")
 
      window.addEventListener("load", initEventHandlers, false);
 
-     
-     
-     carte.appendChild(images);
+     carte.appendChild(pourlightbox);
+     //carte.appendChild(videos);
      carte.appendChild(footer);
      carte.appendChild(titre);
      carte.appendChild(btn);
@@ -310,6 +333,7 @@ fetch("../database/photographe.json")
      carte.appendChild(coeur2);
      carte.appendChild(nombre);
      //btn et nombre dans like
+     pourlightbox.appendChild(images);
      btn.appendChild(coeur);
      btn.appendChild(coeur2);
      //btn.appendChild(coeurplein)
