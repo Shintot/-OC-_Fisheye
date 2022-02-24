@@ -24,36 +24,34 @@ fetch("../database/photographe.json")
 
     // ---- HEADER DYNAMIQUE
 
-    //HEADER PHOTOGRAPHE ----------------------------¤
+    //HEADER PHOTOGRAPHE --------------------------------------------¤
     const heade = document.createElement("div");
     heade.classList.add("photographepage");
-    
 
-    // CONTENANT PHOTOGRAPHE  ----------------------------¤
+    // CONTENANT PHOTOGRAPHE  ---------------------------------------¤
     const contenant = document.createElement("div");
     contenant.classList.add("photographepage__content");
 
-    //NOM DU PHOTOGRAPHE ----------------------------¤
+    //NOM DU PHOTOGRAPHE --------------------------------------------¤
     const nomph = document.createElement("h1");
     nomph.classList.add("photographepage__title");
     nomph.innerText = photographe.name;
 
-    //LOCALISATION DU PHOTOGRAPHE ----------------------------¤
+    //LOCALISATION DU PHOTOGRAPHE -----------------------------------¤
     const localisation = document.createElement("p");
     localisation.classList.add("photographepage__localisation");
     localisation.innerText = photographe.city;
 
-    //PHRASE DU PHOTOGRAPHE  ----------------------------¤
+    //PHRASE DU PHOTOGRAPHE  ----------------------------------------¤
     const phrase = document.createElement("p");
     phrase.classList.add("photographepage__tagline");
     phrase.innerText = photographe.tagline;
 
-    //TAGLIST DU PHOTOGRAPHE ----------------------------¤
+    //TAGLIST DU PHOTOGRAPHE ----------------------------------------¤
     const taglist = document.createElement("ul");
     taglist.classList.add("photographepage__taglist");
 
-    // tags du photographe 3
-
+    // TAGS DU PHOTOGRAPHE ------------------------------------------¤
     for (let tag of photographe.tags) {
       const taglist3 = document.createElement("li");
       taglist3.classList.add("photographepage__tags");
@@ -61,23 +59,20 @@ fetch("../database/photographe.json")
       taglist.appendChild(taglist3);
     }
 
-    //BTN CONTACT
+    //BTN CONTACT ----------------------------------------------------¤
     const button = document.createElement("button");
     button.classList.add("photographepage__button");
     button.innerHTML = "Contactez-moi";
-    button.tabIndex = 3
+    button.tabIndex = 3;
     // LANCEMENT MODAL CONTACT
     button.addEventListener("click", launchModal);
 
-    //PORTRAIT DU PHOTOGRAPHE ----------------------------¤
+    //PORTRAIT DU PHOTOGRAPHE ---------------------------------------¤
     const portrait = document.createElement("img");
     portrait.classList.add("photographepage__photo");
     portrait.src = `${photographe.portrait}`;
 
-
-    //HIERARCHIE
-
-    // DANS HEADER ------------------------¤
+    // DANS HEADER --------------------------------------------------¤
     heade.appendChild(contenant);
     heade.appendChild(nomph);
     heade.appendChild(localisation);
@@ -85,22 +80,21 @@ fetch("../database/photographe.json")
     heade.appendChild(taglist);
     heade.appendChild(button);
     heade.appendChild(portrait);
-    
 
-    // DANS LES CONTENANT -----------------------¤
+    // DANS LES CONTENANT ------------------------------------------¤
     contenant.appendChild(nomph);
     contenant.appendChild(localisation);
     contenant.appendChild(phrase);
     contenant.appendChild(taglist);
-    
-    // DANS DOM -------------------------¤
+
+    // DANS DOM ----------------------------------------------------¤
     hautdepage.appendChild(heade);
 
-    // lien id -> photograperid
+    // LIEN ID -> PHOTOGRAPERID
     const mimi = [];
-    console.log(mimi)
+    console.log(mimi);
 
-    // boucle lien (id -> photograperid)
+    // BOUCLE LIENS (ID -> PHOTOGRAPERID) -------------------------¤
     for (let photo of media) {
       if (photo.photographerId === parseInt(id)) {
         mimi.push(photo);
@@ -118,15 +112,15 @@ fetch("../database/photographe.json")
     }
     console.log(totaldeslikes);
 
-    //TOTAL LIKE
-    const like = document.querySelector(".like")
+    //TOTAL LIKE -------------------------------------------------¤
+    const like = document.querySelector(".like");
     const total = document.createElement("div");
     total.classList.add("totallike");
     const totalcontenant = document.createElement("div");
     totalcontenant.classList.add("totallike__contenant");
     const totaldeslike = document.createElement("p");
     totaldeslike.classList.add("totallike__totaldelike");
-    totaldeslike.innerText = totaldeslikes; 
+    totaldeslike.innerText = totaldeslikes;
 
     const coeurtotal = document.createElement("i");
     coeurtotal.classList.add("fas", "fa-heart");
@@ -139,12 +133,12 @@ fetch("../database/photographe.json")
     total.appendChild(prix);
     totalcontenant.appendChild(totaldeslike);
     totalcontenant.appendChild(coeurtotal);
-    like.appendChild(total)
-    
-    // PAGE DYNAMIQUE
+    like.appendChild(total);
+
+    // PAGE DYNAMIQUE --------------------------------------------¤
     displayMedias(mimi);
 
-    // MENU TRIE
+    // MENU TRIE -------------------------------------------------¤
     const dropdowntitres = document.querySelector("#dropdownMenu");
     dropdowntitres.tabIndex = 4;
     dropdowntitres.addEventListener("change", function (e) {
@@ -183,50 +177,94 @@ fetch("../database/photographe.json")
   }).catch((err) => {
   console.log(err);})
 
+   function factory(medias) {
+     const { image, video } = medias;
+
+     if (image !== undefined) {
+       return createImages(medias);
+     }
+
+     return createVideo(medias);
+   }
+
+   function createImages(medias) {
+     const images = document.createElement("img");
+     images.src = `${medias.image}`;
+     images.tabIndex = 5;
+     images.classList.add("photographegallery__photop");
+     return images;
+   }
+
+   function createVideo(medias) {
+     const videos = document.createElement("video");
+     videos.tabIndex = 5;
+     const source = document.createElement("source");
+     source.setAttribute("src", `${medias.video}`);
+     videos.appendChild(source);
+     videos.classList.add("photographegallery__photop");
+     return videos;
+   }
 
   function displayMedias(mimi){
    for (let medias of mimi) {
-     // contenant des photographe ----------------------------¤
+     // CONTENANT DES PHOTOGRAPHES -------------------------------------------¤
      const carte = document.createElement("div");
      carte.classList.add("photographegallery__card");
 
      const pourlightbox = document.createElement("div");
      pourlightbox.classList.add("photographegallery__contenantlightbox");
 
-     //image photographe -------------------------------------¤
-     const images = document.createElement("img");
-     images.src = `${medias.image}`;
-     images.tabIndex = 5;
-     images.classList.add("photographegallery__photop");
+   
+     const images = factory(medias);
+     
 
-     /*const videos = document.createElement("video");
-     videos.tabIndex = 5;
-     const source = document.createElement("source")
-     source.setAttribute("src", `${medias.video}`); 
-     videos.appendChild(source)
-     videos.classList.add("photographegallery__photop");*/
 
-     //LIGHTBOX
+     //LIGHTBOX -------------------------------------------------------------¤
      const light = document.querySelectorAll(
        ".photographegallery .photographegallery__contenantlightbox"
      );
      const lightbox = document.querySelector("#lightbox");
      const lightboximg = lightbox.querySelector(".lightbox__img");
      const close = lightbox.querySelector(".lightbox__close");
+     const lightBoxContent = document.querySelector(".lightbox__contenant");
 
      for (let i = 0; i < light.length; i++) {
        let newindex = i;
        light[i].onclick = () => {
          console.log(i);
          function preview() {
-           let selectedImgUrl = light[newindex].querySelector("img").src;
-           lightboximg.src = selectedImgUrl;
-           console.log(selectedImgUrl);
+           let selectedImgUrl = light[newindex].querySelector("img");
+           let url=""
+           if(selectedImgUrl){
+            url=selectedImgUrl.src;
+                    lightboximg.src = url;
+         
+          }else{
+            selectedImgUrl = light[newindex].querySelector("video");
+            console.log(selectedImgUrl.firstChild);
+            url = selectedImgUrl.firstChild.src;
+          }
+
+         
+           //let selectedImgUrl = light[newindex];
+            //console.log("URL : ", selectedImgUrl);
+           //lightboximg.src = url;
+           
          }
 
-         //BOUTON
+         //BOUTON BACK & NEXT
          const btnback = document.querySelector(".lightbox__back");
          const btnnext = document.querySelector(".lightbox__next");
+         if (newindex == 0) {
+           {
+             btnback.style.display = "none";
+           }
+         }
+
+         if (newindex >= light.length - 1) {
+           btnnext.style.display = "none";
+         }
+
          btnback.onclick = () => {
            newindex--;
            if (newindex == 0) {
@@ -234,7 +272,7 @@ fetch("../database/photographe.json")
              btnback.style.display = "none";
            } else {
              preview();
-             btnback.style.display = "block";
+             btnnext.style.display = "block";
            }
          };
 
@@ -245,6 +283,7 @@ fetch("../database/photographe.json")
              btnnext.style.display = "none";
            } else {
              preview();
+             btnback.style.display = "block";
            }
          };
 
@@ -259,69 +298,53 @@ fetch("../database/photographe.json")
        };
      }
 
-     //footer ---------------- ------------------------------¤
+     //FOOTER ---------------------------------------------------------¤
      const footer = document.createElement("footer");
      footer.classList.add("photographegallery__footer");
 
-     //titre -----------------------------------------¤
+     //TITRE ----------------------------------------------------------¤
      const titre = document.createElement("p");
      titre.classList.add("photographegallery__figcaption");
      titre.innerText = medias.photoName;
 
-     // contenant bouton like ----------------------------¤
+     //CONTENANT BOUTON LIKE ------------------------------------------¤
      const like = document.createElement("div");
      like.classList.add("photographegallery__like");
 
-     //nombre like -----------------------------------------¤
+     //NOMBRE LIKE ----------------------------------------------------¤
      const nombre = document.createElement("p");
      nombre.classList.add("photographegallery__chiffre");
      nombre.innerText = medias.likes;
 
-     //btn like -----------------------------------------¤
+     //BTN LIKE -------------------------------------------------------¤
      const btn = document.createElement("div");
      btn.classList.add("photographegallery__section-button");
 
-     //coeur -----------------------------------------¤
+     //COEUR VIDE  ----------------------------------------------------¤
      const coeur = document.createElement("i");
      coeur.tabIndex = 5;
      coeur.classList.add("far", "fa-heart", "fa-2x", "coeur");
+
+     //PLUS UN AU CLIC ET AJOUTE COEUR PLEIN ----
      coeur.addEventListener("click", function () {
        const valeur = document.querySelector(".totallike__totaldelike");
-       console.log(valeur);
-       const totalvaleur = parseInt(valeur.innerText) + 1
+       const totalvaleur = parseInt(valeur.innerText) + 1;
        valeur.innerText = totalvaleur;
        coeur2.classList.add("show");
-       afficher();
      });
 
+     //COEUR PLEIN  ----------------------------------------------------¤
      const coeur2 = document.createElement("i");
      coeur2.tabIndex = 5;
      coeur2.classList.add("fas", "fa-heart", "fa-2x", "coeur2");
 
+     //MOINS UN AU CLIC ET AJOUTE COEUR VIDE ----
      coeur2.addEventListener("click", function () {
-       
-       console.log(valeur)
+       const moinsUn = document.querySelector(".totallike__totaldelike");
+       const totalMoinUn = parseInt(moinsUn.innerText) - 1;
+       moinsUn.innerText = totalMoinUn;
        coeur2.classList.remove("show");
-       valeur++;
-       afficher();
      });
-
-     function afficher() {
-       var valeur = 0;
-       var message = "<b>" + valeur + (valeur > 1 ? "s" : "") + "</b>";
-       totaldeslikes.innerHTML = message;
-     }
-
-     function initEventHandlers() {
-       valeur = 0;
-       bumpedB = document.getElementById("bumped");
-       bumpedB.addEventListener("click", bumped, false);
-
-       affichage = document.getElementById("affichage");
-       afficher();
-     }
-
-     window.addEventListener("load", initEventHandlers, false);
 
      carte.appendChild(pourlightbox);
      //carte.appendChild(videos);
@@ -345,7 +368,6 @@ fetch("../database/photographe.json")
      //photo dans gallery (DOM)
      gallery.appendChild(carte);
    }
-
   }
 
   
