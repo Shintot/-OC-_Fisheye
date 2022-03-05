@@ -137,6 +137,7 @@ fetch("../database/photographe.json")
 
     // PAGE DYNAMIQUE --------------------------------------------¤
     displayMedias(mimi);
+    createlightbox();
 
     // MENU TRIE -------------------------------------------------¤
     const dropdowntitres = document.querySelector("#dropdownMenu");
@@ -206,6 +207,7 @@ fetch("../database/photographe.json")
    }
 
   function displayMedias(mimi){
+    //console.log(mimi)
    for (let medias of mimi) {
      // CONTENANT DES PHOTOGRAPHES -------------------------------------------¤
      const carte = document.createElement("div");
@@ -214,35 +216,127 @@ fetch("../database/photographe.json")
      const pourlightbox = document.createElement("div");
      pourlightbox.classList.add("photographegallery__contenantlightbox");
 
-   
      const images = factory(medias);
-     
 
+     //FOOTER ---------------------------------------------------------¤
+     const footer = document.createElement("footer");
+     footer.classList.add("photographegallery__footer");
 
-     //LIGHTBOX -------------------------------------------------------------¤
+     //TITRE ----------------------------------------------------------¤
+     const titre = document.createElement("p");
+     titre.classList.add("photographegallery__figcaption");
+     titre.innerText = medias.photoName;
+
+     //CONTENANT BOUTON LIKE ------------------------------------------¤
+     const like = document.createElement("div");
+     like.classList.add("photographegallery__like");
+
+     //NOMBRE LIKE ----------------------------------------------------¤
+     const nombre = document.createElement("p");
+     nombre.classList.add("photographegallery__chiffre");
+     nombre.innerText = medias.likes;
+
+     //BTN LIKE -------------------------------------------------------¤
+     const btn = document.createElement("div");
+     btn.classList.add("photographegallery__section-button");
+
+     //COEUR VIDE  ----------------------------------------------------¤
+     const coeur = document.createElement("i");
+     coeur.tabIndex = 5;
+     coeur.classList.add("far", "fa-heart", "fa-2x", "coeur");
+
+     //PLUS UN AU CLIC ET AJOUTE COEUR PLEIN ----
+     coeur.addEventListener("click", function () {
+       const valeur = document.querySelector(".totallike__totaldelike");
+       const totalvaleur = parseInt(valeur.innerText) + 1;
+       valeur.innerText = totalvaleur;
+       //PLUS UN AU LIKE DE LA PHOTO
+       const nombredelike = parseInt(nombre.innerText) +1;
+       nombre.innerText = nombredelike;
+       coeur2.classList.add("show");
+     });
+
+     //COEUR PLEIN  ----------------------------------------------------¤
+     const coeur2 = document.createElement("i");
+     coeur2.tabIndex = 5;
+     coeur2.classList.add("fas", "fa-heart", "fa-2x", "coeur2");
+
+     //MOINS UN AU CLIC ET AJOUTE COEUR VIDE ----
+     coeur2.addEventListener("click",    function () {
+       const moinsUn = document.querySelector(".totallike__totaldelike");
+       const totalMoinUn = parseInt(moinsUn.innerText) - 1;
+       moinsUn.innerText = totalMoinUn;
+       // MOINS UN AU LIKE DE LA PHOTO
+       const moinUnAuLikePhoto = parseInt(nombre.innerText) - 1;
+       nombre.innerText = moinUnAuLikePhoto;
+       coeur2.classList.remove("show");
+     });
+
+     carte.appendChild(pourlightbox);
+     //carte.appendChild(videos);
+     carte.appendChild(footer);
+     carte.appendChild(titre);
+     carte.appendChild(btn);
+     carte.appendChild(like);
+     carte.appendChild(coeur);
+     carte.appendChild(coeur2);
+     carte.appendChild(nombre);
+     //btn et nombre dans like
+     pourlightbox.appendChild(images);
+     btn.appendChild(coeur);
+     btn.appendChild(coeur2);
+     //btn.appendChild(coeurplein)
+     like.appendChild(nombre);
+     // like et titre dans footer
+     footer.appendChild(titre);
+     footer.appendChild(like);
+     footer.appendChild(btn);
+     //photo dans gallery (DOM)
+     gallery.appendChild(carte);
+   }
+  }
+
+  function createlightbox () {
+    //LIGHTBOX -------------------------------------------------------------¤
      const light = document.querySelectorAll(
        ".photographegallery .photographegallery__contenantlightbox"
      );
+     //console.log ( light)
      const lightbox = document.querySelector("#lightbox");
      const lightboximg = lightbox.querySelector(".lightbox__img");
+     const videobox = document.querySelector("#videobox");
+     const imgbox = document.querySelector("#imgbox");
      const close = lightbox.querySelector(".lightbox__close");
      const lightBoxContent = document.querySelector(".lightbox__contenant");
-
+     
      for (let i = 0; i < light.length; i++) {
        let newindex = i;
        light[i].onclick = () => {
          console.log(i);
          function preview() {
            let selectedImgUrl = light[newindex].querySelector("img");
+
            let url=""
            if(selectedImgUrl){
+             imgbox.classList.remove("displaynone");
+             videobox.classList.add("displaynone");
             url=selectedImgUrl.src;
                     lightboximg.src = url;
          
           }else{
+            
+            imgbox.classList.add("displaynone");
+            videobox.classList.remove("displaynone");
             selectedImgUrl = light[newindex].querySelector("video");
+             url = selectedImgUrl.firstChild.src;
+            const sourcevideo = document.createElement("source");
+            sourcevideo.src = url;
+            sourcevideo.type = "video/mp4";
+            videobox.autoplay="autoplay";
+            videobox.controls="controls"
+            videobox.appendChild(sourcevideo);
             console.log(selectedImgUrl.firstChild);
-            url = selectedImgUrl.firstChild.src;
+           
           }
 
          
@@ -297,77 +391,6 @@ fetch("../database/photographe.json")
          };
        };
      }
-
-     //FOOTER ---------------------------------------------------------¤
-     const footer = document.createElement("footer");
-     footer.classList.add("photographegallery__footer");
-
-     //TITRE ----------------------------------------------------------¤
-     const titre = document.createElement("p");
-     titre.classList.add("photographegallery__figcaption");
-     titre.innerText = medias.photoName;
-
-     //CONTENANT BOUTON LIKE ------------------------------------------¤
-     const like = document.createElement("div");
-     like.classList.add("photographegallery__like");
-
-     //NOMBRE LIKE ----------------------------------------------------¤
-     const nombre = document.createElement("p");
-     nombre.classList.add("photographegallery__chiffre");
-     nombre.innerText = medias.likes;
-
-     //BTN LIKE -------------------------------------------------------¤
-     const btn = document.createElement("div");
-     btn.classList.add("photographegallery__section-button");
-
-     //COEUR VIDE  ----------------------------------------------------¤
-     const coeur = document.createElement("i");
-     coeur.tabIndex = 5;
-     coeur.classList.add("far", "fa-heart", "fa-2x", "coeur");
-
-     //PLUS UN AU CLIC ET AJOUTE COEUR PLEIN ----
-     coeur.addEventListener("click", function () {
-       const valeur = document.querySelector(".totallike__totaldelike");
-       const totalvaleur = parseInt(valeur.innerText) + 1;
-       valeur.innerText = totalvaleur;
-       coeur2.classList.add("show");
-     });
-
-     //COEUR PLEIN  ----------------------------------------------------¤
-     const coeur2 = document.createElement("i");
-     coeur2.tabIndex = 5;
-     coeur2.classList.add("fas", "fa-heart", "fa-2x", "coeur2");
-
-     //MOINS UN AU CLIC ET AJOUTE COEUR VIDE ----
-     coeur2.addEventListener("click", function () {
-       const moinsUn = document.querySelector(".totallike__totaldelike");
-       const totalMoinUn = parseInt(moinsUn.innerText) - 1;
-       moinsUn.innerText = totalMoinUn;
-       coeur2.classList.remove("show");
-     });
-
-     carte.appendChild(pourlightbox);
-     //carte.appendChild(videos);
-     carte.appendChild(footer);
-     carte.appendChild(titre);
-     carte.appendChild(btn);
-     carte.appendChild(like);
-     carte.appendChild(coeur);
-     carte.appendChild(coeur2);
-     carte.appendChild(nombre);
-     //btn et nombre dans like
-     pourlightbox.appendChild(images);
-     btn.appendChild(coeur);
-     btn.appendChild(coeur2);
-     //btn.appendChild(coeurplein)
-     like.appendChild(nombre);
-     // like et titre dans footer
-     footer.appendChild(titre);
-     footer.appendChild(like);
-     footer.appendChild(btn);
-     //photo dans gallery (DOM)
-     gallery.appendChild(carte);
-   }
   }
 
   
