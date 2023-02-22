@@ -2,15 +2,43 @@
   //dom
   const modal = document.querySelector("#modal");
   const closeModalBtn = document.querySelector("#close");
-
+  closeModalBtn.tabIndex = 1;
+  closeModalBtn.focus();
 // close modal
   closeModalBtn.addEventListener("click", closeModal);
+  closeModalBtn.addEventListener("keyup", function(event) {
+    closeModalBtn.focus()
+    if(event.key === 'Escape') {
+      modal.style.display = "none";
+    }
+    if (event.key === "Enter") {
+      modal.style.display = "none";
+    }
+  });
 
  function launchModal() {
    modal.style.display = "block";
+
+   // NAVIGATION CLAVIER
+  
+   const prenom = document.querySelector("#firstname");
+   prenom.tabIndex = 2;
+   
+    const nom = document.querySelector("#lastname");
+   nom.tabIndex = 3;
+   
+   const email = document.querySelector("#email");
+   email.tabIndex = 4;  
+   const message = document.querySelector("#story");
+   message.tabIndex = 5;
+  const submit = document.querySelector("#submit");
+  submit.tabIndex = 6;
+   
+
  }
   function closeModal() {
     modal.style.display = "none";
+    
   }
 
   // validation  ----------------------------------------------------------------
@@ -19,7 +47,7 @@
     let prenom = document.querySelector("#firstname");
     let nom = document.querySelector("#lastname");
     let email = document.querySelector("#email");
-
+    
     //Regex
     const regex = /^[a-zA-ZÀ-ÖØ-öø-ÿ---_]+$/;
     const regexemail = /^\S+@\S+\.\S+$/;
@@ -53,6 +81,6 @@
     }
 
     if (nom.value && prenom.value && email.value) {
-      alert("c'est bon");
-    }
+      const submit = document.querySelector("#submit");
+      submit.addEventListener("click", closeModal)    }
   });

@@ -348,6 +348,7 @@ select {
   position: fixed;
   right: 3rem;
   width: 276px;
+  z-index: 1000;
 }
 .totallike__contenant {
   align-items: center;
@@ -586,6 +587,7 @@ select {
     margin-left: -150px;
     position: fixed;
     width: 300px;
+    z-index: 200;
   }
 }
 @media screen and (max-width: 720px) {

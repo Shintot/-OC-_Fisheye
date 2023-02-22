@@ -11,14 +11,15 @@ function factory(medias) {
 function createImages(medias) {
   const images = document.createElement("img");
   images.src = `${medias.image}`;
-  images.tabIndex = 5;
+  images.alt = `${medias.alt}`;
+  images.tabIndex = 9;
   images.classList.add("photographegallery__photop");
   return images;
 }
 
 function createVideo(medias) {
   const videos = document.createElement("video");
-  videos.tabIndex = 5;
+  videos.tabIndex = 9;
   videos.type = "video/mp4";
   videos.autoplay = "autoplay";
   videos.controls = "controls";

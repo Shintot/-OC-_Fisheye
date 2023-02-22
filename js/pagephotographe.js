@@ -1,6 +1,16 @@
 const id = new URLSearchParams(document.location.search).get("id");
 console.log("ID : " + id);
 
+ // REDIRIGE LE USER VIA HOME
+document.addEventListener("keydown", function (event) {
+  // Vérifier si la touche "Home" a été pressée
+  if (event.key === "Home" || event.keyCode === 36) {
+    // Rediriger l'utilisateur vers la page d'accueil
+    location.href = "http://127.0.0.1:5500/index.html";
+  }
+});
+ 
+
 // ---- DOM
 const gallery = document.querySelector ("#gallery");
 const hautdepage = document.querySelector ("#hautdepage");
@@ -63,7 +73,7 @@ fetch("../database/photographe.json")
     const button = document.createElement("button");
     button.classList.add("photographepage__button");
     button.innerHTML = "Contactez-moi";
-    button.tabIndex = 3;
+    button.tabIndex = 1;
     // LANCEMENT MODAL CONTACT
     button.addEventListener("click", launchModal);
 
@@ -141,7 +151,7 @@ fetch("../database/photographe.json")
 
     // MENU TRIE -------------------------------------------------¤
     const dropdowntitres = document.querySelector("#dropdownMenu");
-    dropdowntitres.tabIndex = 4;
+    dropdowntitres.tabIndex = 7;
     dropdowntitres.addEventListener("change", function (e) {
       if (e.target.value === "title") {
         mimi.sort(function (a, b) {
@@ -156,6 +166,7 @@ fetch("../database/photographe.json")
 
         gallery.innerHTML = "";
         displayMedias(mimi);
+         createlightbox();
       } else if (e.target.value === "popularity") {
         mimi.sort(function (a, b) {
           return b.likes - a.likes;
@@ -163,6 +174,7 @@ fetch("../database/photographe.json")
 
         gallery.innerHTML = "";
         displayMedias(mimi);
+         createlightbox();
       } else if (e.target.value === "date") {
         console.log(mimi);
         mimi.sort(function (a, b) {
@@ -173,6 +185,7 @@ fetch("../database/photographe.json")
 
         gallery.innerHTML = "";
         displayMedias(mimi);
+         createlightbox();
       }
     });
   }).catch((err) => {

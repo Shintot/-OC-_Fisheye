@@ -1,15 +1,17 @@
 function displayMedias(mimi) {
-  //console.log(mimi)
+  
   for (let medias of mimi) {
     // CONTENANT DES PHOTOGRAPHES -------------------------------------------¤
     const carte = document.createElement("div");
     carte.classList.add("photographegallery__card");
 
+    //CADRAGE POUR CLIC SUR IMAGE POUR LIGHTBOX
     const pourlightbox = document.createElement("div");
     pourlightbox.classList.add("photographegallery__contenantlightbox");
-
+    
+    //IMAGES 
     const images = factory(medias);
-
+    
     //FOOTER ---------------------------------------------------------¤
     const footer = document.createElement("footer");
     footer.classList.add("photographegallery__footer");
@@ -31,18 +33,23 @@ function displayMedias(mimi) {
     //BTN LIKE -------------------------------------------------------¤
     const btn = document.createElement("div");
     btn.classList.add("photographegallery__section-button");
+    btn.setAttribute("alt", "coeur");
 
     //COEUR VIDE  ----------------------------------------------------¤
     const coeur = document.createElement("i");
-    coeur.tabIndex = 5;
+    coeur.tabIndex = 9;
     coeur.classList.add("far", "fa-heart", "fa-2x", "coeur");
 
     //PLUS UN AU CLIC ET AJOUTE COEUR PLEIN ----
     coeur.addEventListener("click", function () {
       plusun();
     });
-    coeur.addEventListener("keyup", function () {
-      plusun();
+
+    coeur.addEventListener("keyup", function (event) {
+      if(event.key === 'Enter') {
+        plusun();
+      }
+      
     });
 
     function plusun() {
@@ -57,15 +64,18 @@ function displayMedias(mimi) {
 
     //COEUR PLEIN  ----------------------------------------------------¤
     const coeur2 = document.createElement("i");
-    coeur2.tabIndex = 5;
+    coeur2.tabIndex = 9;
     coeur2.classList.add("fas", "fa-heart", "fa-2x", "coeur2");
 
     //MOINS UN AU CLIC ET AJOUTE COEUR VIDE ----
     coeur2.addEventListener("click", function () {
      moinsun();
     });
-    coeur2.addEventListener("keyup", function () {
-      moinsun();
+    coeur2.addEventListener("keyup", function (event) {
+       if (event.key === "Enter") {
+         coeur2.classList.remove("show");
+       }
+      
     });
 
     function moinsun (){
